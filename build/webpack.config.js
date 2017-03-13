@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
 const config = require('../config');
@@ -12,20 +13,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extract = new ExtractTextPlugin('css/[name].[hash].css');
-const cssLoader = extract.extract([
-  'css-loader',
-  {
-    loader: 'postcss-loader',
-    options: {
-      plugins: [autoprefixer]
-    }
-  }
-]);
-console.log(getResolvePath(config.PATHS.output));
+
+const cssLoader = extract.extract("css");
+const sassLoader = extract.extract("css!sass");
+const lessLoader = extract.extract("css!less");
 //ExtracTextPlugin插件作用是，让css不加载在html的head，而是把css抽离出来，保存成独立的文件，用外联的形式加载到html中
 module.exports = {
   entry: {
-    app: [ getResolvePath(config.PATHS.base)] // 应用入口
+    app: ['babel-polyfill', getResolvePath(config.PATHS.base + '/' + process.env.PLATFORM_ENV)] // 应用入口
   },
   output: {
     path: getResolvePath(config.PATHS.output), //build完之后输出的文件路径
@@ -50,18 +45,31 @@ module.exports = {
     ],
 
   },
+  plugins: [
+    extract
+  ],
+  vue: {
+    loaders: {
+      css: extract.extract("css"),
+      sass: sassLoader
+    }
+  },
   module: {
+    preLoaders: [{
+      test: /\.vue$/,
+      loader: 'eslint',
+      include: new RegExp(config.PATHS.base),
+      exclude: /node_modules/
+    }, {
+      test: /\.js$/,
+      loader: 'eslint',
+      include: new RegExp(config.PATHS.base),
+      exclude: /node_modules/
+    }],
     loaders: [ //文件加载器
       {
         test: /\.vue$/, //test，识别文件,多使用正则表达式，也可以使用绝对文件名称
-        use: [{
-          loader: 'vue-loader',
-          options: {
-            loaders: {
-              css: cssLoader
-            }
-          }
-        }]
+        loader: 'vue'
       },
       {
         test: /\.js$/,
@@ -77,14 +85,29 @@ module.exports = {
         loader: 'json'
       }, {
         test: /\.css$/,
-        loader: cssLoader
+        loader: cssLoader,
       },
       {
-        test: /\.(png|jpg|gif|svg)|((eot|woff|ttf|svg)[\?]?.*)$/,
+        test: /\.scss$/,
+        loader: sassLoader,
+      },
+      {
+        test: /\.less$/,
+        loader: lessLoader,
+      },
+      {
+        test: /\.(png|jpg|gif|svg|jpeg)$/,
         loader: 'url',
         query: {
           limit: 10000, //低于10kb的直接变成base64
-          name: '[name].[ext]?[hash]'
+          name: 'assets/[name].[ext]?[hash]'
+        }
+      },
+      {
+        test: /\.((eot|woff|ttf|svg)[\?]?.*)$/,
+        loader: 'url',
+        query: {
+          name: 'assets/[name].[ext]?[hash]'
         }
       }
 
