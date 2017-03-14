@@ -8,7 +8,7 @@ import Page2 from './Page2';
 let childrens = [Page1, Page2];
 
 var router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: __dirname,
   routes: [{
     path: '/',

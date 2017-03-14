@@ -1,28 +1,42 @@
 <template>
-<div>
-  page1
-  <router-link to="/page2">
-    <yd-button size="large" type="primary">Go page2</yd-button>
-  </router-link>
-</div>
+
+<NavView title="page1" showBackButton="true">
+
+  <NavContent >
+    page1
+
+    <yd-button @click.native="goPage2">
+      {{msg}}
+    </yd-button>
+
+    <input v-model="abc"/>
+  </NavContent>
+</NavView>
 </template>
 
 
 <script>
-
-
+import RouteData from 'RouteData';
+let vm;
 export default {
-  name:'Page1',
-  data(){
-    return {};
+  mixins: [RouteData],
+  name: 'Page1',
+  data() {
+    return {
+      msg:'123',
+      abc:''
+    };
   },
-  created(){
-
-    console.log(this.$options);
+  created() {
+    vm = this;
   },
-  methods:{
-
+  methods: {
+    goBack: function() {
+      this.$state.goBack();
+    },
+    goPage2(){
+      this.$state.push('page2');
+    }
   }
 };
-
 </script>

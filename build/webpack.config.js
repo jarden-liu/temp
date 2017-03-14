@@ -33,7 +33,9 @@ module.exports = {
     extensions: ['', '.js', '.vue', '.json'], //  import这些后缀的文件不需要加后缀
     fallback: [ //实在找不到import，就会到这个路径下面去找
       getJoinPath('node_modules'),
-      getJoinPath('bower_components')
+      getJoinPath('bower_components'),
+      getResolvePath(config.PATHS.base + '/core'),
+      getResolvePath(config.PATHS.base + '/asset')
     ],
     alias: config.MODULE_ALIAS //module import时候的别名   如设置'vue$': 'vue/dist/vue.common.js'。import vue from 'vue'就相当于 import vue from 'vue/dist/vue.common.js'
   },

@@ -1,18 +1,18 @@
 <template>
-<div>
-  page2
-  <router-link to="/page1">
-    <yd-button size="large" type="primary">Go page1</yd-button>
-  </router-link>
-</div>
+  <NavView title="page2">
+    <NavContent >
+      page2
+    </NavContent>
+  </NavView>
 </template>
 
 
 <script>
 
-
+import RouteData from 'RouteData';
 export default {
   name:'Page2',
+  mixins: [RouteData],
   data(){
     return {};
   },

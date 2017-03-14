@@ -1,7 +1,8 @@
 <template>
-<div>
-  <yd-navbar title="App Title"></yd-navbar>
-  <transition name="slide">
+
+<div id="app-content" transition-direction="back" >
+  <NavBar></NavBar>
+  <transition name='page' >
     <router-view></router-view>
   </transition>
 </div>
@@ -19,8 +20,31 @@ export default {
       message: 'Hello Vue!'
     };
   },
+
+  created(){
+    this.$state.bind('goBack', function() {
+      document.querySelector('#app-content').setAttribute('transition-direction','back');
+      this.router.go(-1);
+    });
+
+    this.$state.bind('go', function(option) {
+      document.querySelector('#app-content').setAttribute('transition-direction','forward');
+      this.router.go(option);
+    });
+
+    this.$state.bind('push', function(option) {
+      document.querySelector('#app-content').setAttribute('transition-direction','forward');
+      this.router.push(option);
+    });
+
+    this.$state.bind('replace', function(option) {
+      document.querySelector('#app-content').setAttribute('transition-direction','forward');
+      this.router.replace(option);
+    });
+  },
   mounted() {
     this.appShow();
+    this.transitionDirection='forward';
   },
   methods: {
     appShow() {
@@ -38,8 +62,8 @@ export default {
   },
   watch:{
     $route(to,form){
-      console.log(123);
-      console.log(history.state);
+      // console.log(123);
+      // console.log(history.state);
     }
   }
 
@@ -47,7 +71,7 @@ export default {
 </script>
 
 
-<style lang="sass">
+<style lang='sass'>
 .title {
     font-weight: 600;
 

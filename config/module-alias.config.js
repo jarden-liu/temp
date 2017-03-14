@@ -1,3 +1,4 @@
+
 module.exports = {
-  'vue$': 'vue/dist/vue.common.js'
+  'vue$': 'vue/dist/vue.common.js',
 };
