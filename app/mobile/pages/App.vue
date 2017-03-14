@@ -13,6 +13,10 @@
 <script>
 let vm;
 
+function setTransitionDirection(direction) {
+  document.querySelector('#app-content').setAttribute('transition-direction',direction);
+}
+
 export default {
   name: 'app',
   data() {
@@ -23,28 +27,32 @@ export default {
 
   created(){
     this.$state.bind('goBack', function() {
-      document.querySelector('#app-content').setAttribute('transition-direction','back');
+      setTransitionDirection('back');
       this.router.go(-1);
     });
 
+    this.$state.bind('goBackTo', function(state) {
+      setTransitionDirection('back');
+      this.router.push(state);
+    });
+
     this.$state.bind('go', function(option) {
-      document.querySelector('#app-content').setAttribute('transition-direction','forward');
+      setTransitionDirection('forward');
       this.router.go(option);
     });
 
     this.$state.bind('push', function(option) {
-      document.querySelector('#app-content').setAttribute('transition-direction','forward');
-      this.router.push(option);
+      setTransitionDirection('forward');
+            this.router.push(option);
     });
 
     this.$state.bind('replace', function(option) {
-      document.querySelector('#app-content').setAttribute('transition-direction','forward');
+      setTransitionDirection('forward');
       this.router.replace(option);
     });
   },
   mounted() {
     this.appShow();
-    this.transitionDirection='forward';
   },
   methods: {
     appShow() {

@@ -26,14 +26,16 @@ let loadData = function() {
  * 保存数据
  */
 let saveData = function() {
+  let back = document.querySelector('#app-content').getAttribute('transition-direction') == 'back';
   var newData = {};
+  if (!back)
   Object.keys(this.$data).forEach((k) => (newData[k] = this.$data[k]));
   store.setItem(this.$options.routeData._url, newData);
 };
 
 
 export default {
-  created(){
+  created() {
     this.$cache = store;
     return loadData.call(this);
   },

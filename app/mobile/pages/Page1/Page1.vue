@@ -1,16 +1,21 @@
 <template>
-
-<NavView title="page1" showBackButton="true">
-
-  <NavContent >
+<NavView title="page1" showBackBtn="false">
+  <!-- <NarBarButtons align="right">
+    <button>123</button>
+  </NarBarButtons> -->
+  <NavContent>
     page1
 
     <yd-button @click.native="goPage2">
       {{msg}}
     </yd-button>
 
-    <input v-model="abc"/>
+    <input v-model="msg" />
   </NavContent>
+
+  <NavFooterBar>
+    123
+  </NavFooterBar>
 </NavView>
 </template>
 
@@ -23,8 +28,8 @@ export default {
   name: 'Page1',
   data() {
     return {
-      msg:'123',
-      abc:''
+      msg: '123',
+      abc: false
     };
   },
   created() {
@@ -34,7 +39,7 @@ export default {
     goBack: function() {
       this.$state.goBack();
     },
-    goPage2(){
+    goPage2() {
       this.$state.push('page2');
     }
   }
