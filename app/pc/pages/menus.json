@@ -1,0 +1,32 @@
+[{
+  "title": "标签管理",
+  "items": [{
+    "name": "招生管理",
+    "router": "home",
+    "icon": "el-icon-document",
+    "index": "1"
+  }, {
+    "name": "学工管理",
+    "router": "page1",
+    "icon": "el-icon-message",
+    "index": "2"
+  }, {
+    "name": "毕业统计管理",
+    "router": "page2",
+    "icon": "el-icon-date",
+    "index": "3"
+  }]
+}, {
+  "title": "人员管理",
+  "items": [{
+    "name": "管理员",
+    "router": "home",
+    "icon": "el-icon-star-on",
+    "index": "4"
+  }, {
+    "name": "标签管理员",
+    "router": "page1",
+    "icon": "el-icon-edit",
+    "index": "5"
+  }]
+}]

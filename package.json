@@ -6,7 +6,7 @@
     "mobile": "PLATFORM_ENV=mobile  node build/server.js ",
     "pc": "PLATFORM_ENV=pc node build/server.js",
     "buildPC": "PLATFORM_ENV=pc node build/build.js",
-    "buildMobile": "PLATFORM_ENV=mobile node build/build.js",
+    "buildMobile": "PLATFORM_ENV=mobile node build/build.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "chalk": "^1.1.3",
     "connect-history-api-fallback": "^1.3.0",
     "css-loader": "^0.26.1",
+    "element-theme-default": "^1.2.4",
     "eslint": "^3.12.2",
     "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^2.0.6",
@@ -83,6 +84,7 @@
     "webpack-merge": "^1.1.2"
   },
   "dependencies": {
+    "element-ui": "^1.2.4",
     "vue": "^2.2.1"
   }
 }
