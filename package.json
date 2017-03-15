@@ -4,9 +4,9 @@
   "description": "A modern starter which uses Vue 2, Vuex, Vue-router and Webpack",
   "scripts": {
     "mobile": "PLATFORM_ENV=mobile  node build/server.js ",
-    "pc": "node build/server.js PLATFORM_ENV=pc",
-    "build": "node build/build.js",
-    "dev": "node build/server.js"
+    "pc": "PLATFORM_ENV=pc node build/server.js",
+    "buildPC": "PLATFORM_ENV=pc node build/build.js",
+    "buildMobile": "PLATFORM_ENV=mobile node build/build.js",
   },
   "repository": {
     "type": "git",

@@ -11,6 +11,7 @@ import $q from '$q';
 import PlatformTool from 'PlatformTool';
 import stateServicePlugin from 'StateService';
 import VueFilter from 'vue-filter';
+import store from '../stores';
 /* css */
 import 'flex.css/dist/flex.css';
 import 'vue-ydui/dist/ydui.px.css';
@@ -37,6 +38,6 @@ Vue.use(components);
 /* eslint-disable no-new */
 /* eslint-disable quotes */
 new Vue({
-  // store,
+  store,
   router
 }).$mount('#app');

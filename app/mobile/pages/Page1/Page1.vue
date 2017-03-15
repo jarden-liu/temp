@@ -9,13 +9,14 @@
     <yd-button @click.native="goPage2">
       {{msg}}
     </yd-button>
-
+    <!-- /../../../assets/logo.jpg -->
     <input v-model="msg" />
+    <img :src="img"/>
   </NavContent>
 
-  <NavFooterBar>
+  <!-- <NavFooterBar>
     123
-  </NavFooterBar>
+  </NavFooterBar> -->
 </NavView>
 </template>
 
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       msg: '123',
+      img: require('logo.jpg'),
       abc: false
     };
   },

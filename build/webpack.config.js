@@ -35,7 +35,7 @@ module.exports = {
       getJoinPath('node_modules'),
       getJoinPath('bower_components'),
       getResolvePath(config.PATHS.base + '/core'),
-      getResolvePath(config.PATHS.base + '/asset')
+      getResolvePath(config.PATHS.base + '/assets')
     ],
     alias: config.MODULE_ALIAS //module import时候的别名   如设置'vue$': 'vue/dist/vue.common.js'。import vue from 'vue'就相当于 import vue from 'vue/dist/vue.common.js'
   },
